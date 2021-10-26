@@ -15,27 +15,26 @@
 
   <modules>
     <module>xxl-job</module>
+    <module>read-mybatis</module>
   </modules>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <mysql.version>8.0.11</mysql.version>
     <spring.cloud-version>Hoxton.SR11</spring.cloud-version>
     <spring.boot-version>2.3.12.RELEASE</spring.boot-version>
     <lombok.version>1.18.12</lombok.version>
     <druid.version>1.1.9</druid.version>
-    <mybatis.version>4.5.15</mybatis.version>
     <mybatis.plus.version>3.4.2</mybatis.plus.version>
     <mybatis.spring.version>2.0.1</mybatis.spring.version>
     <pagehelper.version>1.2.13</pagehelper.version>
     <hutool.version>4.5.15</hutool.version>
-    <mysql.version>6.0.6</mysql.version>
-    <swagger.version>1.5.22</swagger.version>
     <springfox.swagger.version>2.10.0</springfox.swagger.version>
-    <knife4j.version>2.0.7</knife4j.version>
     <fastjson.version>1.2.51</fastjson.version>
+    <xxl-job-version>2.3.0</xxl-job-version>
     <spring.cloud.alibaba-version>2.2.1.RELEASE</spring.cloud.alibaba-version>
-    <cloud.basic.version>1.0-SNAPSHOT</cloud.basic.version>
   </properties>
 
   <dependencyManagement>
@@ -84,13 +83,6 @@
       </dependency>
 
       <dependency>
-        <groupId>org.mybatis.spring.boot</groupId>
-        <artifactId>mybatis-spring-boot-starter</artifactId>
-        <version>${mybatis.spring.version}</version>
-      </dependency>
-
-
-      <dependency>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
         <version>${lombok.version}</version>
@@ -101,13 +93,26 @@
         <artifactId>fastjson</artifactId>
         <version>${fastjson.version}</version>
       </dependency>
+
       <dependency>
         <groupId>cn.hutool</groupId>
         <artifactId>hutool-all</artifactId>
         <version>${hutool.version}</version>
       </dependency>
-    </dependencies>
 
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-boot-starter</artifactId>
+        <version>${mybatis.plus.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.xuxueli</groupId>
+        <artifactId>xxl-job-core</artifactId>
+        <version>${xxl-job-version}</version>
+      </dependency>
+
+    </dependencies>
   </dependencyManagement>
 
   <build>
