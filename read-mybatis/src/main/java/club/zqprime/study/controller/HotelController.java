@@ -2,6 +2,7 @@ package club.zqprime.study.controller;
 
 import club.zqprime.study.dao.Hotel;
 import club.zqprime.study.service.HotelService;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,5 +19,11 @@ public class HotelController {
     @RequestMapping(value = "/getHotelList")
     public List<Hotel> getHotelList(){
         return hotelService.list();
+    }
+
+
+    @RequestMapping(value = "/save")
+    public Boolean save(@RequestBody Hotel hotel){
+        return hotelService.saveTest(hotel);
     }
 }

@@ -1,0 +1,33 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.qmx.crs.rpc.grpc.proto";
+option java_outer_classname = "CrsService";
+//中央预订系统接受推送参数的接口服务
+service CrsServerGrpc{
+  //请求房型的远程接口
+  rpc PushRoomType(PushRoomTypeRequest) returns (PushRoomTypeResponse){
+  }
+
+  //推送房量的远程接口
+  rpc PushRoomVolumes(PushRoomVolumesRequest) returns (PushRoomVolumesResponse){
+  }
+
+}
+
+//推送房型的请求参数
+message PushRoomTypeRequest{
+
+}
+
+//请求房型的响应参数
+message PushRoomTypeResponse{
+
+}
+//推送房量的请求参数
+message PushRoomVolumesRequest{
+
+}
+//推送房量的响应参数
+message PushRoomVolumesResponse{
+
+}

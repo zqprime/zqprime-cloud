@@ -16,6 +16,7 @@
   <modules>
     <module>xxl-job</module>
     <module>read-mybatis</module>
+    <module>grpc</module>
   </modules>
 
   <properties>
@@ -34,6 +35,7 @@
     <springfox.swagger.version>2.10.0</springfox.swagger.version>
     <fastjson.version>1.2.51</fastjson.version>
     <xxl-job-version>2.3.0</xxl-job-version>
+    <dynamic.datasource>3.4.1</dynamic.datasource>
     <spring.cloud.alibaba-version>2.2.1.RELEASE</spring.cloud.alibaba-version>
   </properties>
 
@@ -105,6 +107,13 @@
         <artifactId>mybatis-plus-boot-starter</artifactId>
         <version>${mybatis.plus.version}</version>
       </dependency>
+
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+        <version>${dynamic.datasource}</version>
+      </dependency>
+
 
       <dependency>
         <groupId>com.xuxueli</groupId>

@@ -1,6 +1,29 @@
 server:
   port: 10002
 
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    dynamic:
+      primary: slave_2
+      datasource:
+        slave_1:
+          url: jdbc:mysql://127.0.0.1:3306/read-mybatis-plus-1?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8
+          username: root
+          password: root
+          driver-class-name: com.mysql.cj.jdbc.Driver
+        slave_2:
+          url: jdbc:mysql://127.0.0.1:3306/read-mybatis-plus-2?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8
+          username: root
+          password: root
+          driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+
 mybatis-plus:
-  mapper-locations: classpath*: /mapper/*Mapper.xml
+  mapper-locations: classpath*:/mapper/*/*Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
 
