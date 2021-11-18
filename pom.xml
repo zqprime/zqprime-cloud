@@ -17,6 +17,7 @@
     <module>xxl-job</module>
     <module>read-mybatis</module>
     <module>grpc</module>
+    <module>basic-study</module>
   </modules>
 
   <properties>

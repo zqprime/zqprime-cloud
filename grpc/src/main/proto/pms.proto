@@ -2,8 +2,19 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "com.qmx.crs.rpc.grpc.proto";
 option java_outer_classname = "CrsService";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
 //中央预订系统接受推送参数的接口服务
 service CrsServerGrpc{
+
+  //获取公钥的接口
+  rpc GetPublicKey(google.protobuf.Empty) returns(PublicKey){
+  }
+
+  //登录接口
+  rpc Login(LoginParams) returns(Token){
+  }
+
   //请求房型的远程接口
   rpc PushRoomType(PushRoomTypeRequest) returns (PushRoomTypeResponse){
   }
@@ -11,23 +22,121 @@ service CrsServerGrpc{
   //推送房量的远程接口
   rpc PushRoomVolumes(PushRoomVolumesRequest) returns (PushRoomVolumesResponse){
   }
+}
 
+enum Target {
+  //生产环境
+  Production = 0;
+  //测试环境
+  Test = 1;
+}
+enum ResultStatusCode{
+  //成功
+  Success = 0;
+  //失败
+  Errors = 1;
+}
+
+//登录参数
+message LoginParams{
+  //租户编码
+  string code = 1;
+  //使用公钥加密登录后的内容（密文）
+  string singText = 2;
+}
+
+//错误信息
+message Error{
+  string error = 1;
+  int32 type = 2;
+}
+//公钥
+message PublicKey{
+  bytes key = 1;
+}
+
+//登录后的jwt数据
+message Token{
+  //是否成功
+  bool status = 1;
+  //登录成功后的凭证
+  bytes jwt = 2;
+}
+
+message GuestRoom{
+  //房型代码
+  string code = 1;
+  //改房型房间数量
+  int32 quantity = 2;
+  //最大入住人数
+  int32 maxOccupancy = 3;
+  //房型描述
+  string descriptiveText = 4;
+}
+
+
+
+//酒店描述内容
+message HotelDescriptiveContent{
+  // pms编码
+  string pmsCode = 1;
+  //酒店编码
+  string hotelCode = 2;
+
+  repeated GuestRoom guestRooms = 3;
 }
 
 //推送房型的请求参数
 message PushRoomTypeRequest{
-
+  //消息版本
+  double version = 1;
+  //环境
+  Target target = 2;
+  //酒店描述内容数组
+  repeated HotelDescriptiveContent hotelDescriptiveContents = 3;
+  //登录成功后返回的token内容
+  bytes jwt = 4;
 }
 
 //请求房型的响应参数
 message PushRoomTypeResponse{
-
+  //消息版本
+  double version = 1;
+  //环境
+  Target target = 2;
+  //结果代码
+  ResultStatusCode resultStatusCode = 3;
+  //错误信息列表
+  repeated Error errors = 4;
 }
+
+message RoomTypeSegment{
+  //房型编码 （可处理多房型数据）
+  string roomTypeCode = 3;
+  //可用房量
+  string roomsAvailable = 4;
+}
+
+//日期与房型可用房量数组
+message Property{
+  //日期
+  google.protobuf.Timestamp startDate = 1;
+  //房型可用房量数组
+  repeated RoomTypeSegment roomTypeSegments = 2;
+}
+
 //推送房量的请求参数
 message PushRoomVolumesRequest{
+  //pms 酒店编码
+  string hotelCode = 1;
+  //日期与该日期房型房量素组 的数组
+  repeated Property properties = 2;
 
+  bytes jwt = 3;
 }
+
 //推送房量的响应参数
 message PushRoomVolumesResponse{
-
+  //推送结果
+  ResultStatusCode resultStatusCode = 1;
 }
