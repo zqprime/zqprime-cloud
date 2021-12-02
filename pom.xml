@@ -18,6 +18,7 @@
     <module>read-mybatis</module>
     <module>grpc</module>
     <module>basic-study</module>
+    <module>ratelimit-redis</module>
   </modules>
 
   <properties>
