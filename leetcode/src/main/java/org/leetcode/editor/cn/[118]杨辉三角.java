@@ -60,7 +60,9 @@ class Solution118 {
 class Main118{
     public static void main(String[] args) {
         Solution118 solution118 = new Solution118();
+        long start = System.currentTimeMillis();
         List<List<Integer>> generate = solution118.generate(30);
+        System.out.println("耗时："+(System.currentTimeMillis()-start)+"毫秒");
         for (List<Integer> integers : generate) {
             for (Integer integer : integers) {
                 System.out.print(integer+"  ");
