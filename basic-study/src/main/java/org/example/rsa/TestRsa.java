@@ -65,7 +65,8 @@ public class TestRsa {
 
 
 
-    private static void extracted() {
+    @Test
+    public void extracted() {
         KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("jwt.jks"), "zqprime".toCharArray());
         KeyPair keyPair = keyStoreKeyFactory.getKeyPair("jwt", "zqprime".toCharArray());
         byte[] encoded = keyPair.getPrivate().getEncoded();
