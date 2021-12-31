@@ -25,7 +25,7 @@ package org.leetcode.editor.cn;//假设你正在爬楼梯。需要 n 阶你才�
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution70 {
     public int climbStairs(int n) {
         if(n == 1){
             return 1;
@@ -35,8 +35,9 @@ class Solution {
         }
         int left = 1,right = 2;
         int times = n -2;
+        int tmp;
         while (times > 0){
-            int tmp = right;
+            tmp = right;
             right += left;
             left = tmp;
             times --;
@@ -44,10 +45,12 @@ class Solution {
         return right;
     }
 }
-//class Main70{
-//    public static void main(String[] args) {
-//        Solution70 solution70 = new Solution70();
-//        System.out.println(solution70.climbStairs(5));
-//    }
-//}
+class Main70{
+    public static void main(String[] args) {
+        Solution70 solution70 = new Solution70();
+        for (int i = 1; i <= 41; i++) {
+            System.out.println(solution70.climbStairs(i));
+        }
+    }
+}
 //leetcode submit region end(Prohibit modification and deletion)
