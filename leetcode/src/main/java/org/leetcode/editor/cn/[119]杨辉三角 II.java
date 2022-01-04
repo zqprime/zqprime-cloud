@@ -75,7 +75,7 @@ class Solution119 {
 class Main119{
     public static void main(String[] args) {
         Solution119 solution119 = new Solution119();
-        System.out.println(solution119.getRow(5));
+        System.out.println(solution119.getRow(30));
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
