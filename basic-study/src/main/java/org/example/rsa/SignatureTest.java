@@ -1,6 +1,7 @@
 package org.example.rsa;
 
 import cn.hutool.core.codec.Base64Decoder;
+import org.junit.Test;
 
 import java.nio.charset.StandardCharsets;
 import java.security.*;
@@ -11,6 +12,28 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 public class SignatureTest {
+    @Test
+    public void testSignature() throws InvalidKeyException, NoSuchAlgorithmException, InvalidKeySpecException, SignatureException {
+        String publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC4OCd2Ru6jb84XRIa23mbI3uzd\n" +
+                "MtUGBUp8AzVijwFdtUskH56aIjsuq30FGy4DQJP0mPRxWLlLy80AIJ+GOgp9s7Eu\n" +
+                "gIgW44yhlUOk89KX8HoO+8LGdUqOOqjh1hS1tnGe1rwO1EoL+BPcB8uFK20fOTiR\n" +
+                "/GgoerQ0ee1oD3PDPwIDAQAB";
+        String str = "enterpriseParkName山纳合成橡胶有限责任公司enterpriseParkCode91140000717850635PenterpriseParkAddress山西省大同市阳高县龙泉工业园区area140221lngAndLat113.72,40.27industryType中外合资industryBranch合成橡胶制造performanceLevel3businessScope生产氯丁橡胶；生产盐酸、氢氧化钠、次氯酸钠、乙烯基乙炔、氯丁二烯、乙炔、废硫酸、二氯丁烯；corporation云华enterpriseParkPrincipal李黎enterpriseParkTel13934267055doorPostNum2transportVehicles80vehicleInFactory20mechanicInFactory30doorSystemFirmd3c69f9071244e258bb733bf2df400e1publicKey4D4947664D413047435371475349623344514542415155414134474E4144434269514B42675143344F4364325275366A6238345852496132336D624933757A640D0A4D74554742557038417A56696A7746647455736B48353661496A73757133304647793444514A50306D505278574C6C4C79383041494A2B474F677039733745750D0A67496757343479686C554F6B38394B5838486F4F2B384C476455714F4F716A6831685331746E47653172774F31456F4C2B425063423875464B3230664F5469520D0A2F47676F657251306565316F443350445077494441514142";
+        byte[] bytes = Base64Decoder.decode(publicKey);
+        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(bytes);
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+
+        RSAPublicKey plk = (RSAPublicKey) keyFactory.generatePublic(keySpec);
+        String signaText = "BSXAWIqbtY/fi4jrqRLx2hQLjoXf0JjYU1YxsJDYe6g1L7Yi+XMANgpyxwuML544MuWiTbvo7zskk1Z2UiFcULLpXcpd55jV+ML2EhocvzryIVZJDaWftnBshcg8C0XPxCUXzdwig65aWh+czwALt7Cig8KmtE//J6mJS64cobg=";
+        byte[] sign = Base64.getDecoder().decode(signaText);
+
+        Signature signature = Signature.getInstance("SHA256withRSA");
+
+        signature.initVerify(plk);
+        signature.update(str.getBytes());
+        boolean verify = signature.verify(sign);
+        System.out.println(verify);
+    }
     public static void main(String[] args) throws InvalidKeyException, NoSuchAlgorithmException, InvalidKeySpecException, SignatureException {
         String privateKey = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQClGcxwa5r3sM1l3PCy1qOV1/p28wrsQ6FYFjmT6Bf\n" +
                 "fyLUjE9tlVkBJyzqbnVAEAxeAKSs6XRjNL7/gM0JQHxVq/usrEDMicZy8plWjgo\n" +
