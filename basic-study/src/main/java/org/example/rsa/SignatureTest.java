@@ -86,4 +86,33 @@ public class SignatureTest {
         boolean verify = signature.verify(sign);
         System.out.println(verify);
     }
+
+    @Test
+    public void testS() throws InvalidKeyException, NoSuchAlgorithmException, InvalidKeySpecException, SignatureException {
+        String privateKey = "MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAOMl9mMrTaLYDT/A\n" +
+                "ptG9nNnH98jW7KOuxG9b1y+r/2/UrmLr4hLBayUVMyzysveCNo9A0yY8RECQYUI8\n" +
+                "K4T0R51NK13wmB9fzHn/0zp8eTY1Ifmqz9jaNJLtL9yXF0L5NdslcLdGGCAHSL72\n" +
+                "hnSgCI5ooX7Y8U6sdAJ0xr97LqOBAgMBAAECgYEAxNI5K3bzP5575Hj3U5g8GA0I\n" +
+                "rJNm2vHtrhxjWiBsJqegL4D7FItaXvh+rnziDEtdIUXncCMadONmEvF2OC8++PCo\n" +
+                "b4P2x+zF24WMXTaxnDOPyh7JhtTCG+oKBMQXZ+4nmH6XRkUTwUVPS/wYO4wuF5gT\n" +
+                "9tcd+VVLUOO28dSojQECQQD/6B5X0pyiN4F8c6+0bX0DMvwBXRsrjgXRuar0AJsR\n" +
+                "ULbW3BcClPzppxgaJK7v50JywDLcI58j8XmMSG0Ml7/RAkEA4zspACB2K2dyZ7ig\n" +
+                "kr0Vxad3mkss4ImGcrvagSfLpLDb1+SeMDxRefs2Xn9bFpYxLV83etvrjpoVirsT\n" +
+                "KbfEsQJBAPVcJNunf6648VnVwb2IzLfohl74Wjikb0fqcNKKUiOD9AqF8znyh5uv\n" +
+                "LhjC20gBv2Auj5UqQkdAG345YvUT+kECQB4FzAYDQ/m6IkiIAVdB+mVyGgBd3GES\n" +
+                "apwwK8+SxXpOD833m9r9rTozsdxMcWmLkJXRFdB6zCW8QApja0XAzRECQBcvSVgz\n" +
+                "Drj8M7G+A7yOmUv+3jOhZR7yc43a1Ne6u7XRaHCH/tYJOCmEiUGfbxHKdB7goLPJ\n" +
+                "AImGdHBZEVMREiQ=";
+        String str = "enterpriseParkName山纳合成橡胶有限责任公司enterpriseParkCode91140000717850635PenterpriseParkAddress山西省大同市阳高县龙泉工业园区area140221lngAndLat113.72,40.27industryType中外合资industryBranch合成橡胶制造performanceLevel3businessScope生产氯丁橡胶；生产盐酸、氢氧化钠、次氯酸钠、乙烯基乙炔、氯丁二烯、乙炔、废硫酸、二氯丁烯；corporation云华enterpriseParkPrincipal李黎enterpriseParkTel13934267055doorPostNum2transportVehicles80vehicleInFactory20mechanicInFactory30doorSystemFirmd3c69f9071244e258bb733bf2df400e1publicKey30819F300D06092A864886F70D010101050003818D0030818902818100E325F6632B4DA2D80D3FC0A6D1BD9CD9C7F7C8D6ECA3AEC46F5BD72FABFF6FD4AE62EBE212C16B2515332CF2B2F782368F40D3263C44409061423C2B84F4479D4D2B5DF0981F5FCC79FFD33A7C79363521F9AACFD8DA3492ED2FDC971742F935DB2570B74618200748BEF68674A0088E68A17ED8F14EAC740274C6BF7B2EA3810203010001";
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+
+        PKCS8EncodedKeySpec pkcs8EncodedKeySpec = new PKCS8EncodedKeySpec(Base64Decoder.decode(privateKey));
+        PrivateKey prk = keyFactory.generatePrivate(pkcs8EncodedKeySpec);
+        Signature privateSignature = Signature.getInstance("SHA256withRSA");
+        privateSignature.initSign(prk);
+        privateSignature.update(str.getBytes(StandardCharsets.UTF_8));
+        byte[] sign = privateSignature.sign();
+        String encodeToString = Base64.getEncoder().encodeToString(sign);
+        System.out.println(encodeToString);
+    }
 }
