@@ -1,2 +1,5 @@
+spring:
+  application:
+    name: elk-study
 logging:
   config: study/study-elk/src/main/resources/logback-spring.xml

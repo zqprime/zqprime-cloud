@@ -1,21 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration>
 <configuration>
+    <contextName>logback</contextName>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <springProperty scope="context" name="app.name" source="spring.application.name" />
+    <springProperty scope="context" name="ip" source="spring.cloud.client.ipAddress" />
     <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>localhost:5000</destination>
+        <destination>162.14.97.85:5000</destination>
+        <!-- encoder必须配置,有多种可选 -->
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
+            <customFields>{"appname": "${app.name}"}</customFields>
             <providers>
-                <timestamp/>
-                <version/>
-                <message/>
-                <logLevel/>
-                <callerData/>
-                <threadName/>
+                <timestamp>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <pattern>
+                    <pattern>
+                        {
+                        "ip": "${ip}",
+                        "level": "%level",
+                        "trace": "%X{X-B3-TraceId:-}",
+                        "span": "%X{X-B3-SpanId:-}",
+                        "parent": "%X{X-B3-ParentSpanId:-}",
+                        "thread": "%thread",
+                        "class": "%logger{40}",
+                        "message": "%message",
+                        "stack_trace": "%exception{10}"
+                        }
+                    </pattern>
+                </pattern>
             </providers>
         </encoder>
+        <!-- 日志输出编码 -->
+        <!-- <encoder charset="UTF-8"
+                  class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+             <providers>
+                 <timestamp>
+                     <timeZone>UTC</timeZone>
+                 </timestamp>
+                 <pattern>
+                     <pattern>
+                         {
+                         "logLevel": "%level",
+                         "serviceName": "${springAppName:-}",
+                         "pid": "${PID:-}",
+                         "thread": "%thread",
+                         "class": "%logger{40}",
+                         "rest": "%message"
+                         }
+                     </pattern>
+                 </pattern>
+             </providers>
+         </encoder>-->
     </appender>
-
-    <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
     <root level="INFO">
         <appender-ref ref="LOGSTASH" />
