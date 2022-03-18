@@ -26,9 +26,8 @@ case object FirstSparkApplication{
 
     val array: Array[(String,Int)] = result.collect()
 
-    print("===========start============")
+
     array.foreach(print)
-    print("============end==========")
 
     spark.stop()
   }

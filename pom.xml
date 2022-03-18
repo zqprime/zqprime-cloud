@@ -21,7 +21,8 @@
     <module>ratelimit-redis</module>
     <module>sentinel-ratelimit</module>
     <module>leetcode</module>
-      <module>bigdata</module>
+    <module>bigdata</module>
+    <module>study</module>
   </modules>
 
   <properties>
