@@ -1,6 +1,7 @@
 package club.zqprime.test;
 
 import club.zqprime.redis.RedisMain;
+import club.zqprime.redis.model.Book;
 import club.zqprime.redis.model.Study;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,13 +22,19 @@ public class TestRedis {
 
     public List<Study> studies;
 
+    public List<Book> books;
+
     @PostConstruct
     public void init(){
         studies = Optional.ofNullable(studies).orElse(new ArrayList<>());
+        books = Optional.ofNullable(books).orElse(new ArrayList<>());
         studies.add(new Study("kafka",5));
         studies.add(new Study("hadoop",6));
         studies.add(new Study("spark",7));
         studies.add(new Study("flink",3));
+
+        books.add(new Book("Chinese","hahahaha"));
+        books.add(new Book("English","wuwuwuwu"));
     }
 
 
@@ -38,11 +45,11 @@ public class TestRedis {
 
     @Test
     public void testSetList(){
-        Long list = redisTemplate.opsForList().leftPushAll("studyList", studies);
-//        redisTemplate.opsForList().leftPushAll("studyList", studies);
-//        redisTemplate.opsForList().leftPushAll("studyList", studies.get(0));
-//        redisTemplate.opsForList().leftPushAll("studyList", studies.get(1));
+        Long list = redisTemplate.opsForList().leftPushAll("valueList", studies);
+        Long list2 = redisTemplate.opsForList().leftPushAll("valueList", books);
+
         System.out.println(list);
+        System.out.println(list2);
     }
 
    @Test
@@ -84,6 +91,14 @@ public class TestRedis {
         System.out.println(redisTemplate.opsForHash().get("studyHash", studies.get(0)));
         Map<Object, Object> entries = redisTemplate.opsForHash().entries("studyHash");
         System.out.println(entries);
+    }
+
+    @Test
+    public void testSetHash2(){
+        studies.forEach(e->{
+            Long hash = redisTemplate.opsForHash().increment("studyHash", e, new Random().nextInt(20));
+            System.out.println(hash);
+        });
     }
 
 }
