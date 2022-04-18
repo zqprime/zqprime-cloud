@@ -19,6 +19,7 @@
         <module>study_redis</module>
         <module>study-elk</module>
         <module>study-kafka</module>
+        <module>sharding-jdbc</module>
     </modules>
 
     <properties>
