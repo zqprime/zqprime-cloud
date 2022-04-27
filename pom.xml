@@ -23,6 +23,7 @@
     <module>leetcode</module>
     <module>bigdata</module>
     <module>study</module>
+    <module>reverse-engineering</module>
   </modules>
 
   <properties>
@@ -34,7 +35,8 @@
     <spring.boot-version>2.3.12.RELEASE</spring.boot-version>
     <lombok.version>1.18.12</lombok.version>
     <druid.version>1.1.9</druid.version>
-    <mybatis.plus.version>3.4.2</mybatis.plus.version>
+    <mybatis.plus.version>3.5.1</mybatis.plus.version>
+    <mybatis.plus.generator.version>3.5.2</mybatis.plus.generator.version>
     <mybatis.spring.version>2.0.1</mybatis.spring.version>
     <pagehelper.version>1.2.13</pagehelper.version>
     <hutool.version>4.5.15</hutool.version>
@@ -112,6 +114,12 @@
         <groupId>com.baomidou</groupId>
         <artifactId>mybatis-plus-boot-starter</artifactId>
         <version>${mybatis.plus.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-generator</artifactId>
+        <version>${mybatis.plus.generator.version}</version>
       </dependency>
 
       <dependency>
