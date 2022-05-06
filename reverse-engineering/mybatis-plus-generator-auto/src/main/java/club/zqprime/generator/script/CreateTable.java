@@ -9,8 +9,8 @@ public class CreateTable {
 //            }else {
 //                month = String.valueOf(i);
 //            }
-            String star =  "DROP TABLE IF EXISTS `t_order_2022_"+month+"`;\n" +
-                    "CREATE TABLE `t_order_2022_"+month+"` (\n" +
+            String star =  "DROP TABLE IF EXISTS `t_order_2021_"+month+"`;\n" +
+                    "CREATE TABLE `t_order_2021_"+month+"` (\n" +
                     "  `id` bigint NOT NULL,\n" +
                     "  `user_id` bigint NOT NULL,\n" +
                     "\t`price` DOUBLE(5,2),\n" +

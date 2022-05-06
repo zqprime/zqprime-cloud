@@ -5,6 +5,7 @@ import club.zqprime.sharding.mapper.TUserMapper;
 import club.zqprime.sharding.service.ITUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
  * @author baomidou
  * @since 2022-04-27
  */
+@Transactional
 @Service
 public class TUserServiceImpl extends ServiceImpl<TUserMapper, TUser> implements ITUserService {
 

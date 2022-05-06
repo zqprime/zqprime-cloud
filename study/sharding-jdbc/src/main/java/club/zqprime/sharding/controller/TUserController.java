@@ -3,10 +3,9 @@ package club.zqprime.sharding.controller;
 import club.zqprime.sharding.entity.TUser;
 import club.zqprime.sharding.service.ITUserService;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.sql.DataSource;
 
 /**
  * <p>
@@ -16,11 +15,9 @@ import javax.sql.DataSource;
  * @author baomidou
  * @since 2022-04-27
  */
-@Controller
+@RestController
 @RequestMapping("/tUser")
 public class TUserController {
-    @Resource
-    private DataSource dataSource;
 
     @Resource
     private ITUserService itUserService;
@@ -37,4 +34,5 @@ public class TUserController {
         itUserService.save(user);
         return user;
     }
+
 }
