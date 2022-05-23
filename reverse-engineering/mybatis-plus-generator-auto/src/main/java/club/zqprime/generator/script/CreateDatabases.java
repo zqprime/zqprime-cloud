@@ -14,14 +14,14 @@ public class CreateDatabases {
         users.put("mall_wulvzhou","7Gm#xLE?PmmL.DJO%%~z");
         users.put("mall_xinbang","7Yw$76@#D^z31oHk3XBg");
 
-//        users.put("upms_center","7PdLiXCadVUtnuZ@");
+        users.put("upms_center","7PdLiXCadVUtnuZ@");
         users.put("upms_wulvzhou","3Jx!@4D*EnUoT9eWcRsH");
         users.put("upms_xinbang","5Ko?WOZ#?tH?KK~tUiYJ");
         users.put("upms_gexiancun","4Il*qq?whOY02Nlc?Ny5");
 
         users.put("crs_gexiancun","9Yg^R?a*r.1D&BOGcj9C");
         users.put("crs_wulvzhou","6Ly%OK5L~qYUAWiAF3vv");
-//        users.put("crs_xinbang","3Le.iBmx.nrBAYBobMw?");
+        users.put("crs_xinbang","3Le.iBmx.nrBAYBobMw?");
 
         users.put("gms_group","2Zj0LOu%ikK#!54v");
 
@@ -37,10 +37,10 @@ public class CreateDatabases {
 //            System.out.println(sql2);
 //            System.out.println(sql3);
             System.out.println(sql4);
-            System.out.println(sql);
-            System.out.println(sql5);
-            System.out.println();
-            System.out.println();
+//            System.out.println(sql);
+//            System.out.println(sql5);
+//            System.out.println();
+//            System.out.println();
         });
     }
 
