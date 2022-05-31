@@ -17,6 +17,7 @@
                     <pattern>
                         {
                         "ip": "${ip}",
+                        "app": "${app.name}",
                         "level": "%level",
                         "trace": "%X{X-B3-TraceId:-}",
                         "span": "%X{X-B3-SpanId:-}",

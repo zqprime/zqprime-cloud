@@ -14,10 +14,10 @@ import org.springframework.stereotype.Component;
 public class ElkStudyController implements ApplicationRunner {
 
     @Override
-    public void run(ApplicationArguments args){
-        for (int i = 0; i < 10000; i++) {
+    public void run(ApplicationArguments args) throws InterruptedException {
+        for (int i = 0; i < 100000; i++) {
             log.info("logstash-zqprime-elk 测试初始一些日志吧！  "+i);
+            Thread.sleep(100);
         }
-
     }
 }
