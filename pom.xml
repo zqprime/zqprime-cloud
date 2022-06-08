@@ -44,7 +44,7 @@
     <fastjson.version>1.2.51</fastjson.version>
     <xxl-job-version>2.3.0</xxl-job-version>
     <dynamic.datasource>3.4.1</dynamic.datasource>
-    <spring.cloud.alibaba-version>2.2.1.RELEASE</spring.cloud.alibaba-version>
+    <spring.cloud.alibaba-version>2.2.5.RELEASE</spring.cloud.alibaba-version>
   </properties>
 
   <dependencyManagement>

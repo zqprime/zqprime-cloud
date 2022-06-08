@@ -1,0 +1,5 @@
+server:
+  port: 8857
+token-server:
+  appNames: tokenServer
+  port: 11111
