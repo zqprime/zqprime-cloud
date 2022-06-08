@@ -21,6 +21,8 @@
     <module>ratelimit-redis</module>
     <module>sentinel-ratelimit</module>
     <module>sentinel-dashboard</module>
+    <module>simple-server</module>
+    <module>sentinel-token-server</module>
     <module>leetcode</module>
     <module>bigdata</module>
     <module>study</module>
