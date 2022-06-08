@@ -20,6 +20,7 @@
     <module>basic-study</module>
     <module>ratelimit-redis</module>
     <module>sentinel-ratelimit</module>
+    <module>sentinel-dashboard</module>
     <module>leetcode</module>
     <module>bigdata</module>
     <module>study</module>
