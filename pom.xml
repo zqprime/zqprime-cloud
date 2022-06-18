@@ -16,7 +16,6 @@
   <modules>
     <module>xxl-job</module>
     <module>read-mybatis</module>
-    <module>grpc</module>
     <module>basic-study</module>
     <module>ratelimit-redis</module>
     <module>sentinel-ratelimit</module>
