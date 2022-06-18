@@ -10,15 +10,15 @@ spring:
     sentinel:
       transport:
         dashboard: 127.0.0.1:8858
-      datasource:
-        flow:
-          nacos:
-            server-addr: 127.0.0.1:8848
-            dataId: ${spring.application.name}-flow-rules
-            groupId: SENTINEL_GROUP
-            namespace: flow
-            data-type: json
-            rule-type: flow
+#      datasource:
+#        flow:
+#          nacos:
+#            server-addr: 127.0.0.1:8848
+#            dataId: ${spring.application.name}-flow-rules
+#            groupId: SENTINEL_GROUP
+#            namespace: flow
+#            data-type: json
+#            rule-type: flow
 
 server:
   port: 6002

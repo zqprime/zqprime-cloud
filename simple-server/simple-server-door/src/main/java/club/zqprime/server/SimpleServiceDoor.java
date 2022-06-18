@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 
 @SpringBootApplication
 @RestController
-public class SimpleService {
+public class SimpleServiceDoor {
 
     @Resource
     private RestTemplate restTemplate;
@@ -22,6 +22,6 @@ public class SimpleService {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(SimpleService.class,args);
+        SpringApplication.run(SimpleServiceDoor.class,args);
     }
 }
