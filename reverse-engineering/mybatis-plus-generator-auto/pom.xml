@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>reverse-engineering</artifactId>
-    <groupId>org.example</groupId>
+    <groupId>club.zqprime</groupId>
     <version>1.0-SNAPSHOT</version>
   </parent>
   <artifactId>mybatis-plus-generator-auto</artifactId>
