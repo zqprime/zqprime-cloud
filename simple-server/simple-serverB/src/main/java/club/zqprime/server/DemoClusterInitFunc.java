@@ -56,8 +56,21 @@ public class DemoClusterInitFunc implements InitFunc {
     private final String clusterMapDataId = APP_NAME + DemoConstants.CLUSTER_MAP_POSTFIX;
 
     @Override
+    public String toString() {
+        return "DemoClusterInitFunc{" +
+                "remoteAddress='" + remoteAddress + '\'' +
+                ", groupId='" + groupId + '\'' +
+                ", flowDataId='" + flowDataId + '\'' +
+                ", paramDataId='" + paramDataId + '\'' +
+                ", configDataId='" + configDataId + '\'' +
+                ", clusterMapDataId='" + clusterMapDataId + '\'' +
+                '}';
+    }
+
+    @Override
     public void init() throws Exception {
-        System.out.println("开始初始化=============");
+        System.out.println("开始初始化============= ");
+        System.out.println(this);
         // Register client dynamic rule data source.
         initDynamicRuleProperty();
 

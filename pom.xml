@@ -24,7 +24,7 @@
     <module>bigdata</module>
     <module>study</module>
     <module>reverse-engineering</module>
-      <module>simple-spring-boot</module>
+    <module>simple-spring-boot</module>
   </modules>
 
   <properties>

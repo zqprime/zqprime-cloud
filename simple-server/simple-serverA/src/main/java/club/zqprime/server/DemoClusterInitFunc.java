@@ -56,8 +56,21 @@ public class DemoClusterInitFunc implements InitFunc {
     private final String clusterMapDataId = APP_NAME + DemoConstants.CLUSTER_MAP_POSTFIX;
 
     @Override
+    public String toString() {
+        return "DemoClusterInitFunc{" +
+                "remoteAddress='" + remoteAddress + '\'' +
+                ", groupId='" + groupId + '\'' +
+                ", flowDataId='" + flowDataId + '\'' +
+                ", paramDataId='" + paramDataId + '\'' +
+                ", configDataId='" + configDataId + '\'' +
+                ", clusterMapDataId='" + clusterMapDataId + '\'' +
+                '}';
+    }
+
+    @Override
     public void init() throws Exception {
-        System.out.println("开始初始化=============");
+        System.out.println("开始初始化============= ");
+        System.out.println(this);
         // Register client dynamic rule data source.
         initDynamicRuleProperty();
 
@@ -97,6 +110,7 @@ public class DemoClusterInitFunc implements InitFunc {
         ReadableDataSource<String, ServerTransportConfig> serverTransportDs = new NacosDataSource<>(remoteAddress, groupId,
             clusterMapDataId, source -> {
             List<ClusterGroupEntity> groupList = JSON.parseObject(source, new TypeReference<List<ClusterGroupEntity>>() {});
+            System.out.println(groupList);
             return Optional.ofNullable(groupList)
                 .flatMap(this::extractServerTransportConfig)
                 .orElse(null);
@@ -127,6 +141,7 @@ public class DemoClusterInitFunc implements InitFunc {
         ReadableDataSource<String, ClusterClientAssignConfig> clientAssignDs = new NacosDataSource<>(remoteAddress, groupId,
             clusterMapDataId, source -> {
             List<ClusterGroupEntity> groupList = JSON.parseObject(source, new TypeReference<List<ClusterGroupEntity>>() {});
+            System.out.println(groupList);
             return Optional.ofNullable(groupList)
                 .flatMap(this::extractClientAssignment)
                 .orElse(null);
