@@ -25,6 +25,7 @@
     <module>study</module>
     <module>reverse-engineering</module>
     <module>simple-spring-boot</module>
+    <module>spring-transaction</module>
   </modules>
 
   <properties>
