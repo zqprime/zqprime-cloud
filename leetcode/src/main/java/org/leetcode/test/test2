@@ -1,0 +1,79 @@
+pipeline {
+
+    agent any
+
+    environment {
+        // 环境
+        ENV = 'PRO'
+        // 服务名 ip 端口 版本
+        SERVICE_NAME = 'xx'
+        SERVER_IP = 'xx'
+        SERVER_PORT = 'xx'
+        SERVER_USER = 'xx'
+        SERVICE_VERSION = 'xx'
+        // docker repo 内网ip
+        DOCKER_INTERNAL_REPO = 'xx'
+        // docker repo 外网ip（上传镜像用）
+        DOCKER_PUBLIC_REPO = 'xx'
+        // docker repo 命令空间 帐号密码
+        DOCKER_NAMESPACE = 'xx'
+        DOCKER_USERNAME = 'xx'
+        DOCKER_PASSWORD = 'xx'
+        // 注册中心地址 命名空间
+        NACOS_IP = 'xx'
+        NAMESPACE_ID = 'xx'
+        // ssh 密钥文件
+        SECRET_FILE = credentials('xx')
+        // jvm参数
+        JAVA_OPTS = 'xx'
+    }
+
+    stages {
+        stage('拉取代码'){
+            sh 'pwd'
+            git credentialsId: '9abc0faf-a25d-4d8d-b51e-801c52428648', url: 'https://codeup.aliyun.com/617f8660537a989b1e8d0330/deploy-test/my-test.git'
+        }
+
+    }
+}
+
+        stage('project build') {
+            agent {
+                docker {
+                    image 'maven:3-alpine'
+                    args '-v /var/jenkins_home/.m2:/root/.m2'
+                }
+            }
+            steps {
+                sh 'mvn clean install -Dmaven.test.skip=true -Dproject.type=jar -Ppro package'
+            }
+        }
+
+pipeline {
+    agent any
+
+    stages {
+        stage('git pull') {
+            steps {
+                sh 'pwd'
+                git credentialsId: '9abc0faf-a25d-4d8d-b51e-801c52428648', url: 'https://codeup.aliyun.com/617f8660537a989b1e8d0330/deploy-test/my-test.git'
+            }
+        }
+
+        stage('project build') {
+            agent {
+                docker {
+                    image 'maven:3.8.3-jdk-8'
+                    args '-v /root/.m2:/root/.m2'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh 'pwd'
+                sh 'mvn --version'
+                sh 'mvn clean install'
+            }
+        }
+    }
+}
+<localRepository>/root/.m2/resp</localRepository>

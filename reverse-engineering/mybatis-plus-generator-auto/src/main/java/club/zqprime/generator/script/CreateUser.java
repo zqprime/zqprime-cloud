@@ -7,20 +7,10 @@ import java.util.Map;
 
 public class CreateUser {
       public static Map<String,String> getUsers() {
-        String s = "upms-center\tOvVbcxmM-BBhD8qg04\\5FVBer\n" +
-                "        mall_nanjing\t3Ax.md66rDABVQ@#mYf%\n" +
-                "                upms_nanjing\t9Lv*3B@ArOz0DK$ZxHBw\n" +
-                "        upms_chongqing\t2Yv?!$Yfzn&AkNyXtu~P\n" +
-                "        mall_center\t9Kt&IMBJAI%5VeePgHyI\n" +
-                "        mall_chongqing\t8Do.4uNGXVPG@Z?X!yn.\n" +
-                "                upms_hanhai\t7Os*O8x&YDtHnnicSGeF\n" +
-                "        upms_fuyang\t3Ji$M8sFt4x7S0439YY9\n" +
-                "        mall_fuyang\t2Pe^EKIbCLm&XqmtoCdY\n" +
-                "        mall_taipingyang\t1Cz^Xiq94fmUCg?.m?nA\n" +
-                "        mall_hanhai\t6Aq*!k$koLjsxM^.SI??\n" +
-                "        upms_taipingyang\t4Hm&qme%ds@!euFNC6Ky\n" +
-                "        upms_hefei\t1Sk$pHlyrgkN4r.2jhr~\n" +
-                "                mall_hefei\t2Kj~qDa8VK#.T~$*H4hz";
+
+        String s = "      nacos\t36X8m%3EDKooMcv8\n" +
+                "         xxl-job\tXxl_job@2021-10-23.com\n" +
+                "         sentinel\tznf93HQr66iA&BQs\n" ;
         final String[] strings = s.split("\\n");
         final List<String> list = Arrays.asList(strings);
         Map<String,String> data = new HashMap<String, String>();

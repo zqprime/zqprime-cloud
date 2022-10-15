@@ -76,7 +76,7 @@ public class DemoClusterInitFunc implements InitFunc {
 
         // Register token client related data source.
         // Token client common config:
-        initClientConfigProperty();
+//        initClientConfigProperty();
         // Token client assign config (e.g. target token server) retrieved from assign map:
         initClientServerAssignProperty();
 
@@ -205,7 +205,9 @@ public class DemoClusterInitFunc implements InitFunc {
 
     private String getCurrentMachineId() {
         // Note: this may not work well for container-based env.
-        return HostNameUtil.getIp() + SEPARATOR + TransportConfig.getRuntimePort();
+        final String s = HostNameUtil.getIp() + SEPARATOR + TransportConfig.getRuntimePort();
+        System.out.println("getCurrentMachineId"+s);
+        return s;
     }
 
     private static final String SEPARATOR = "@";

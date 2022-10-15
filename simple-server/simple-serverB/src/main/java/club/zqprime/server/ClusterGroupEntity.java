@@ -15,13 +15,14 @@
  */
 package club.zqprime.server;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
  * @author Eric Zhao
  * @since 1.4.1
  */
-public class ClusterGroupEntity {
+public class ClusterGroupEntity implements Serializable {
 
     private String machineId;
     private String ip;

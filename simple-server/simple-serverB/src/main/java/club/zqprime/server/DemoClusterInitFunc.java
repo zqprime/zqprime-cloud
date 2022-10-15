@@ -82,7 +82,7 @@ public class DemoClusterInitFunc implements InitFunc {
 
         // Register token server related data source.
         // Register dynamic rule data source supplier for token server:
-        registerClusterRuleSupplier();
+//        registerClusterRuleSupplier();
         // Token server transport config extracted from assign map:
         initServerTransportConfigProperty();
 
@@ -203,7 +203,9 @@ public class DemoClusterInitFunc implements InitFunc {
 
     private String getCurrentMachineId() {
         // Note: this may not work well for container-based env.
-        return HostNameUtil.getIp() + SEPARATOR + TransportConfig.getRuntimePort();
+        final String s = HostNameUtil.getIp() + SEPARATOR + TransportConfig.getRuntimePort();
+        System.out.println("getCurrentMachineId"+s);
+        return s;
     }
 
     private static final String SEPARATOR = "@";

@@ -15,7 +15,7 @@ public class FileReciver {
         //获取输入流
         InputStream is = socket.getInputStream();
         //文件输出
-        FileOutputStream fos = new FileOutputStream("D:\\work\\park.rar");
+        FileOutputStream fos = new FileOutputStream("D:\\work\\xxxx.rar");
         byte[] buffer = new byte[1024];
         int len;
         while ((len=is.read(buffer)) != -1){
