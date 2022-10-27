@@ -10,6 +10,10 @@ spring:
     username: root
     password: 123456
 
+  redis:
+    host: 162.14.97.85
+    database: 7
+    password: 942955zll
 
 mybatis-plus:
   global-config:
@@ -20,3 +24,4 @@ mybatis-plus:
   mapper-locations: classpath*:/mapper/*/*Mapper.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+

@@ -32,7 +32,9 @@ public class Prd01CarController {
 
     @GetMapping("/list")
     public List<Prd01Car> findList(){
-        return prd01CarService.list();
+        final List<Prd01Car> list = prd01CarService.list();
+        System.out.println(list);
+        return list;
     }
 
 

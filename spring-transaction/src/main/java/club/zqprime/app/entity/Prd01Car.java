@@ -1,8 +1,13 @@
 package club.zqprime.app.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -14,6 +19,7 @@ import java.math.BigDecimal;
  * @author baomidou
  * @since 2022-10-11
  */
+@Data
 @TableName("prd01_car")
 public class Prd01Car implements Serializable {
 
@@ -22,61 +28,19 @@ public class Prd01Car implements Serializable {
     /**
      * 主键
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
+    @TableField(value = "name")
     private String name;
 
+    @TableField(value = "price")
     private BigDecimal price;
 
+    @TableField(value = "version")
     private Integer version;
 
+    @TableField(value = "is_delete")
     private Boolean isDelete;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
-    public Boolean getIsDelete() {
-        return isDelete;
-    }
-
-    public void setIsDelete(Boolean isDelete) {
-        this.isDelete = isDelete;
-    }
-
-    @Override
-    public String toString() {
-        return "Prd01Car{" +
-            "id=" + id +
-            ", name=" + name +
-            ", price=" + price +
-            ", version=" + version +
-            ", isDelete=" + isDelete +
-        "}";
-    }
 }
