@@ -13,5 +13,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IPrd01CarService extends IService<Prd01Car> {
 
-    boolean myTest();
+    boolean myTest(String id);
+
+    boolean supportsTest(String id);
 }

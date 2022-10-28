@@ -1,9 +1,6 @@
 package club.zqprime.app.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
@@ -38,7 +35,11 @@ public class Prd01Car implements Serializable {
     @TableField(value = "price")
     private BigDecimal price;
 
+    @TableField(value = "count")
+    private Integer count;
+
     @TableField(value = "version")
+    @Version
     private Integer version;
 
     @TableField(value = "is_delete")

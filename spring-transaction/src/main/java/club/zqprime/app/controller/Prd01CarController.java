@@ -2,7 +2,6 @@ package club.zqprime.app.controller;
 
 import club.zqprime.app.entity.Prd01Car;
 import club.zqprime.app.service.IPrd01CarService;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,6 +50,7 @@ public class Prd01CarController {
             Prd01Car car = new Prd01Car();
             cars.add(car);
             car.setName(UUID.randomUUID().toString());
+            car.setCount(0);
             car.setPrice(BigDecimal.valueOf(Math.toRadians(100000)));
         }
         prd01CarService.saveBatch(cars);

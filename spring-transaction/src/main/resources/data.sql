@@ -8,6 +8,7 @@ CREATE TABLE `prd01_car` (
      `name` VARCHAR(50) NOT NULL DEFAULT '',
      `price` DECIMAL(20,6) NOT NULL DEFAULT 0,
      `version` INT(10) NOT NULL DEFAULT 0,
+     `count` INT(10) NOT NULL DEFAULT 0,
      `is_delete` TINYINT(1) NOT NULL DEFAULT 0,
      PRIMARY KEY (`id`)
 )
