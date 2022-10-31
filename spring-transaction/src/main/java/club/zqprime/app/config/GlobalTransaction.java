@@ -10,9 +10,7 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionManager;
 import org.springframework.transaction.interceptor.DefaultTransactionAttribute;
 import org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource;
-import org.springframework.transaction.interceptor.RuleBasedTransactionAttribute;
 import org.springframework.transaction.interceptor.TransactionInterceptor;
-import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.annotation.Resource;
 
@@ -25,7 +23,7 @@ import javax.annotation.Resource;
 public class GlobalTransaction {
 //    private static final String AOP_POINTCUT_EXPRESSION =
 //            "execution(* com.qmx.order.service.impl..*.*(..)) || execution(* com.qmx.order.distributedService..*.*(..))";
-    private static final String AOP_POINTCUT_EXPRESSION = "execution(* club.zqprime.app.service.impl..*.*(..))";
+    private static final String AOP_POINTCUT_EXPRESSION = "execution(* club.zqprime.app.service.impl..*.*(..)) || execution(* club.zqprime.app.distributedservice..*.*(..))";
 
     @Resource
     private TransactionManager transactionManager;
@@ -36,8 +34,7 @@ public class GlobalTransaction {
         txAttr_REQUIRED.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
 
         DefaultTransactionAttribute txAttr_PROPAGATION_SUPPORTS = new DefaultTransactionAttribute();
-        txAttr_PROPAGATION_SUPPORTS.setPropagationBehavior(TransactionDefinition.PROPAGATION_NOT_SUPPORTED);
-        txAttr_PROPAGATION_SUPPORTS.setPropagationBehavior(TransactionDefinition.PROPAGATION_NOT_SUPPORTED);
+        txAttr_PROPAGATION_SUPPORTS.setPropagationBehavior(TransactionDefinition.PROPAGATION_SUPPORTS);
 
         DefaultTransactionAttribute txAttr_REQUIRED_READONLY = new DefaultTransactionAttribute();
         txAttr_REQUIRED_READONLY.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
@@ -62,8 +59,11 @@ public class GlobalTransaction {
         source.addTransactionalMethod("push*", txAttr_REQUIRED);
 
         source.addTransactionalMethod("supports*",txAttr_PROPAGATION_SUPPORTS);
+//        source.addTransactionalMethod("supports*",null);
 
         source.addTransactionalMethod("*", txAttr_REQUIRED);
+
+
 
         return new TransactionInterceptor(transactionManager, source);
     }

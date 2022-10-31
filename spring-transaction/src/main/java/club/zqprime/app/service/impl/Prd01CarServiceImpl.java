@@ -1,5 +1,6 @@
 package club.zqprime.app.service.impl;
 
+import club.zqprime.app.distributedservice.DistributedCarService;
 import club.zqprime.app.entity.Prd01Car;
 import club.zqprime.app.mapper.Prd01CarMapper;
 import club.zqprime.app.service.IPrd01CarService;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import javax.annotation.Resource;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -31,6 +33,9 @@ public class Prd01CarServiceImpl extends ServiceImpl<Prd01CarMapper, Prd01Car> i
 
     @Resource
     private RedissonClient redissonClient;
+
+    @Resource
+    private DistributedCarService distributedCarService;
 
     private final AtomicInteger ai = new AtomicInteger(0);
 
@@ -70,39 +75,17 @@ public class Prd01CarServiceImpl extends ServiceImpl<Prd01CarMapper, Prd01Car> i
     @Override
     public boolean supportsTest(String id) {
         final String name = TransactionSynchronizationManager.getCurrentTransactionName();
-        log.info("supportsTest*******："+name);
+        log.info("supportsTest========================================："+name);
         log.info("步骤{}",1);
         String key = "testKey_"+id;
         final RLock lock = redissonClient.getLock(key);
         lock.lock();
         try {
             log.info("步骤{}",2);
-            return testSupport(id);
+            return distributedCarService.xxxSupport(id);
         }finally {
             lock.unlock();
             log.info("步骤{}",7);
         }
-    }
-
-    @SneakyThrows
-    @Transactional(propagation = Propagation.NESTED)
-    public boolean testSupport(String id){
-        log.info("步骤{}",3);
-        Prd01Car car = getById(id);
-        final String name = TransactionSynchronizationManager.getCurrentTransactionName();
-        log.info("testSupport*******："+name);
-        log.info("步骤{}",4);
-        Integer count = car.getCount();
-
-        car.setCount(++count);
-        TimeUnit.MILLISECONDS.sleep(20);
-        log.info("步骤{}",5);
-        final boolean update = updateById(car);
-        log.info("步骤{}",6);
-        final int times = ai.incrementAndGet();
-        log.info("============方法执行了：{}次了,count:{},结果：{}============",times,count,update);
-        TimeUnit.MILLISECONDS.sleep(20);
-//        log.info("步骤{},{}",7,5/0);
-        return true;
     }
 }
