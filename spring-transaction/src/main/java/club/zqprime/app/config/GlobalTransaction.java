@@ -10,7 +10,9 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionManager;
 import org.springframework.transaction.interceptor.DefaultTransactionAttribute;
 import org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource;
+import org.springframework.transaction.interceptor.RuleBasedTransactionAttribute;
 import org.springframework.transaction.interceptor.TransactionInterceptor;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.annotation.Resource;
 
@@ -34,7 +36,8 @@ public class GlobalTransaction {
         txAttr_REQUIRED.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
 
         DefaultTransactionAttribute txAttr_PROPAGATION_SUPPORTS = new DefaultTransactionAttribute();
-        txAttr_PROPAGATION_SUPPORTS.setPropagationBehavior(TransactionDefinition.PROPAGATION_SUPPORTS);
+        txAttr_PROPAGATION_SUPPORTS.setPropagationBehavior(TransactionDefinition.PROPAGATION_NOT_SUPPORTED);
+        txAttr_PROPAGATION_SUPPORTS.setPropagationBehavior(TransactionDefinition.PROPAGATION_NOT_SUPPORTED);
 
         DefaultTransactionAttribute txAttr_REQUIRED_READONLY = new DefaultTransactionAttribute();
         txAttr_REQUIRED_READONLY.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);

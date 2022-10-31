@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import javax.annotation.Resource;
@@ -47,7 +49,16 @@ public class Prd01CarServiceImpl extends ServiceImpl<Prd01CarMapper, Prd01Car> i
         final RLock lock = redissonClient.getLock(key);
         lock.lock();
         try {
-            work(id);
+            Prd01Car car = getById(id);
+            final String name2 = TransactionSynchronizationManager.getCurrentTransactionName();
+            log.info("当前事务testSupport*******："+name2);
+            Integer count = car.getCount();
+            car.setCount(++count);
+            TimeUnit.MILLISECONDS.sleep(20);
+            final boolean update = updateById(car);
+            final int times = ai.incrementAndGet();
+            log.info("============方法执行了：{}次了,count:{},结果：{}============",times,count,update);
+            TimeUnit.MILLISECONDS.sleep(20);
             TimeUnit.MILLISECONDS.sleep(200);
         }finally {
             lock.unlock();
@@ -59,38 +70,39 @@ public class Prd01CarServiceImpl extends ServiceImpl<Prd01CarMapper, Prd01Car> i
     @Override
     public boolean supportsTest(String id) {
         final String name = TransactionSynchronizationManager.getCurrentTransactionName();
-        log.info("supportsTest======："+name);
+        log.info("supportsTest*******："+name);
+        log.info("步骤{}",1);
         String key = "testKey_"+id;
         final RLock lock = redissonClient.getLock(key);
+        lock.lock();
         try {
+            log.info("步骤{}",2);
             return testSupport(id);
         }finally {
-            if(lock.isHeldByCurrentThread()){
-                lock.unlock();
-            }
+            lock.unlock();
+            log.info("步骤{}",7);
         }
     }
 
     @SneakyThrows
-    private boolean testSupport(String id){
-        final String name = TransactionSynchronizationManager.getCurrentTransactionName();
-        log.info("当前事务testSupport*******："+name);
-        work(id);
-//        TimeUnit.MILLISECONDS.sleep(200);
-        return true;
-    }
-
-    @SneakyThrows
-    private void work(String id){
+    @Transactional(propagation = Propagation.NESTED)
+    public boolean testSupport(String id){
+        log.info("步骤{}",3);
         Prd01Car car = getById(id);
+        final String name = TransactionSynchronizationManager.getCurrentTransactionName();
+        log.info("testSupport*******："+name);
+        log.info("步骤{}",4);
         Integer count = car.getCount();
-        car.setCount(count+1);
+
+        car.setCount(++count);
         TimeUnit.MILLISECONDS.sleep(20);
+        log.info("步骤{}",5);
         final boolean update = updateById(car);
+        log.info("步骤{}",6);
         final int times = ai.incrementAndGet();
         log.info("============方法执行了：{}次了,count:{},结果：{}============",times,count,update);
         TimeUnit.MILLISECONDS.sleep(20);
+//        log.info("步骤{},{}",7,5/0);
+        return true;
     }
-
-
 }
