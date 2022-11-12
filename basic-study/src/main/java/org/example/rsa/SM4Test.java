@@ -7,8 +7,6 @@ import cn.hutool.crypto.SmUtil;
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
 import org.junit.Test;
 
-import java.nio.charset.StandardCharsets;
-
 public class SM4Test {
     @Test
     public void testSm4(){
