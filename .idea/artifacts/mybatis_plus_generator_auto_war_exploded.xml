@@ -64,6 +64,9 @@
           <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.31" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.11" />
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.14.0" />
+          <element id="library" level="project" name="Maven: junit:junit:4.13.2" />
+          <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-core:2.2" />
+          <element id="library" level="project" name="Maven: org.hamcrest:hamcrest:2.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">

@@ -60,7 +60,11 @@
       <artifactId>commons-pool2</artifactId>
       <version>2.9.0</version>
     </dependency>
-
+    <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcprov-jdk15to18</artifactId>
+      <version>1.69</version>
+    </dependency>
   </dependencies>
 
 </project>
