@@ -2,6 +2,8 @@ package org.example.rsa;
 
 import org.junit.Test;
 
+import java.util.Optional;
+
 public class TestString {
     @Test
     public void testLength(){
@@ -13,5 +15,12 @@ public class TestString {
         
         System.out.println(result.toString().length());
         System.out.println(result.toString());
+    }
+
+
+    @Test
+    public void testLength2(){
+       String value =  Optional.<String>empty().orElse("xxxx");
+        System.out.println(value);
     }
 }
