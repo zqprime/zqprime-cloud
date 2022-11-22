@@ -20,6 +20,7 @@
         <module>study-elk</module>
         <module>study-kafka</module>
         <module>sharding-jdbc</module>
+        <module>study-io</module>
     </modules>
 
     <properties>
