@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -180,5 +181,17 @@ public class TestRedis {
         int i = 1/0;
         redisTemplate.exec();
         redisTemplate.setEnableTransactionSupport(false);
+    }
+
+    @Test
+    public void testKeyGq() throws InterruptedException {
+        redisTemplate.opsForValue().set("baike", "100", 8, TimeUnit.SECONDS);
+
+        final Boolean baike = redisTemplate.hasKey("baike");
+        System.out.println(baike != null && baike);
+
+        TimeUnit.SECONDS.sleep(9);
+        final Boolean baike2 = redisTemplate.hasKey("baike");
+        System.out.println(baike2 != null && baike2);
     }
 }
