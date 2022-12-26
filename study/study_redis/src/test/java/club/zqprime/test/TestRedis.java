@@ -189,8 +189,9 @@ public class TestRedis {
 
         final Boolean baike = redisTemplate.hasKey("baike");
         System.out.println(baike != null && baike);
-
-        TimeUnit.SECONDS.sleep(9);
+        TimeUnit.SECONDS.sleep(4);
+        redisTemplate.opsForValue().set("baike", "100", 8, TimeUnit.SECONDS);
+        TimeUnit.SECONDS.sleep(5);
         final Boolean baike2 = redisTemplate.hasKey("baike");
         System.out.println(baike2 != null && baike2);
     }
