@@ -1,6 +1,6 @@
 package club.zqprime;
 
-import club.zqprime.server.DemoServer;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,18 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SimpleServiceB {
 
-    @Autowired
-    private DemoServer server;
-
-    @RequestMapping("/foo")
-    public String foo(){
-        return "barB";
-    }
-
-    @GetMapping("/hello/{name}")
-    public String apiHello(@PathVariable String name) throws Exception {
-        return server.sayHello(name);
-    }
 
     public static void main(String[] args) {
         SpringApplication.run(SimpleServiceB.class,args);
