@@ -56,4 +56,9 @@ public class Prd01CarController {
         prd01CarService.saveBatch(cars);
         return prd01CarService.listByIds(cars.stream().map(Prd01Car::getId).collect(Collectors.toSet()));
     }
+
+    @GetMapping("/testTransaction")
+    public void testTransaction(){
+        prd01CarService.testInterceptor("");
+    }
 }

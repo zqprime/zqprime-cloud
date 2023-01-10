@@ -16,4 +16,7 @@ public interface IPrd01CarService extends IService<Prd01Car> {
     boolean myTest(String id);
 
     boolean supportsTest(String id);
+
+
+    void testInterceptor(String id);
 }

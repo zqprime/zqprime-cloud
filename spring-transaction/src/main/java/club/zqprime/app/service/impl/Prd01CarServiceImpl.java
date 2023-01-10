@@ -2,6 +2,8 @@ package club.zqprime.app.service.impl;
 
 import club.zqprime.app.distributedservice.DistributedCarService;
 import club.zqprime.app.entity.Prd01Car;
+import club.zqprime.app.listener.TransactionEvent;
+import club.zqprime.app.listener.TransactionListener;
 import club.zqprime.app.mapper.Prd01CarMapper;
 import club.zqprime.app.service.IPrd01CarService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -9,6 +11,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +19,8 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 
 import javax.annotation.Resource;
 import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -87,5 +92,19 @@ public class Prd01CarServiceImpl extends ServiceImpl<Prd01CarMapper, Prd01Car> i
             lock.unlock();
             log.info("步骤{}",7);
         }
+    }
+
+    @Resource
+    private ApplicationEventPublisher publisher;
+
+    @Override
+    public void testInterceptor(String id) {
+        final Prd01Car prd01Car = new Prd01Car();
+        final String uuid = UUID.randomUUID().toString();
+        prd01Car.setName(uuid);
+        prd01Car.setId(System.currentTimeMillis());
+        save(prd01Car);
+        TransactionEvent event = new TransactionEvent(uuid);
+        publisher.publishEvent(event);
     }
 }
