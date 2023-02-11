@@ -47,7 +47,7 @@
     <xxl-job-version>2.3.0</xxl-job-version>
     <dynamic.datasource>3.4.1</dynamic.datasource>
     <redission.version>3.12.5</redission.version>
-    <spring.cloud.alibaba-version>2.2.5.RELEASE</spring.cloud.alibaba-version>
+    <spring.cloud.alibaba-version>2.2.9.RELEASE</spring.cloud.alibaba-version>
   </properties>
 
   <dependencyManagement>
@@ -75,6 +75,15 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+
+      <!-- https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-dubbo -->
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-starter-dubbo</artifactId>
+        <version>2.2.5.RELEASE</version>
+      </dependency>
+
+
 
       <dependency>
         <groupId>com.alibaba</groupId>

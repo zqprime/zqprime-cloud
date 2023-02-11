@@ -1,7 +1,20 @@
+server:
+  port: 8054
 spring:
   application:
     name: simple-server
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: 162.14.97.85:8848
+dubbo:
+  application:
+    name: ${spring.application.name}
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: spring-cloud://162.14.97.85:8848
+
+  scan:
+    base-packages: club.zqprime.service
