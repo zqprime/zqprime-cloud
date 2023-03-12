@@ -29,11 +29,11 @@
     </dependency>
 
     <!-- Sa-Token-OAuth2.0 模块 -->
-<!--    <dependency>
+    <dependency>
       <groupId>cn.dev33</groupId>
       <artifactId>sa-token-oauth2</artifactId>
       <version>1.34.0</version>
-    </dependency>-->
+    </dependency>
   </dependencies>
 
   <build>
