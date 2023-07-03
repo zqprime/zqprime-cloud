@@ -21,6 +21,7 @@
         <module>study-kafka</module>
         <module>sharding-jdbc</module>
         <module>study-io</module>
+        <module>study-spring</module>
     </modules>
 
     <properties>
